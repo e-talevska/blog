@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('about', 'PagesController@about');//about e ime na metodot koj ke se povika
 
 Route::get('home', 'PagesController@home');
+
+Route::get('articles', 'ArticlesController@index');
+Route::get('articles/{slug}', 'ArticlesController@view');
