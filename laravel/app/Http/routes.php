@@ -17,3 +17,8 @@ Route::get('/', function () {
 
 Route::get('about', 'PagesController@about');
 Route::get('contact','PagesController@contact');
+
+Route::get('articles','ArticlesController@index');
+Route::get('articles/create','ArticlesController@create');
+Route::get('articles/{slug}','ArticlesController@view');
+Route::post('articles/save','ArticlesController@store');

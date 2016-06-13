@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: code
- * Date: 08.06.2016
- * Time: 19:55
- */
+@extends('layouts.layout')
+
+@section('content')
+    <h2>{{ $article->title }}</h2>
+    <hr>
+    <div>{{ $article->body }}</div>
+@endsection
