@@ -9,6 +9,7 @@
             <div class="content">
                 {{ $article->body  }}
             </div>
+            <span>{{ $article->published_at }}</span>
         </article>
     @endforeach
 @endsection

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -28,5 +28,13 @@ class ArticlesController extends Controller
 
     public function create() {
         return view('articles.create');
+    }
+
+    public function store(Request $request){
+        $input = $request->all();
+//        var_dump($input);exit;
+        $article = new Article();
+        $article->create($input);
+        return redirect('/articles');
     }
 }
