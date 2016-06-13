@@ -31,4 +31,11 @@ class ArticlesController extends Controller
 
 
                 }
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $article = new Article();
+        $article->create($input);
+        return redirect('/articles');
+    }
 }
