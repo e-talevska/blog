@@ -25,5 +25,10 @@ class ArticlesController extends Controller
         }
 
         return view('articles.view', compact('article'));
-    }
+    }    public function create()
+            {
+                return view('articles.create'); // articles.create = articles/create
+
+
+                }
 }
