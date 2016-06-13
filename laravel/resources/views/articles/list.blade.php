@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <h2>Articles</h2>
+        <h2>Articles <a href="{{ url('/articles/create') }}"><span class="glyphicon glyphicon-plus"></span></a></h2>
     <hr>
         @foreach($articles as $article)
             <article>
@@ -10,6 +10,7 @@
                 <div class="content">
                     {{ $article->body }}
                 </div>
+                <span>{{ $article->published_at }}</span>
             </article>
     @endforeach
     @endsection

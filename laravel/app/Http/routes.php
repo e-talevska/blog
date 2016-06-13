@@ -20,4 +20,7 @@ Route::get('about', 'PagesController@about');//about e ime na metodot koj ke se 
 Route::get('home', 'PagesController@home');
 
 Route::get('articles', 'ArticlesController@index');
+Route::get('articles/create', 'ArticlesController@create');
 Route::get('articles/{slug}', 'ArticlesController@view');
+Route::post('articles/save', 'ArticlesController@store');
+
