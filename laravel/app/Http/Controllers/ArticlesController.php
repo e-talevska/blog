@@ -11,8 +11,9 @@ class ArticlesController extends Controller
 {
     public function index() {
         $articles = Article::all();
-        //['articles' => $articles]
-        return view('articles.list', compact('articles'));
+        $name = "Emilija";
+        //['articles' => $articles, 'name' => $name]
+        return view('articles.list', ['articles' => $articles]);
     }
 
     public function view($slug){
@@ -23,5 +24,9 @@ class ArticlesController extends Controller
         }
 
         return view('articles.view', compact('article'));
+    }
+
+    public function create() {
+        return view('articles.create');
     }
 }
