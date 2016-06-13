@@ -23,4 +23,14 @@ class ArticlesController extends Controller
 
         return view('articles.view', compact('article'));
     }
+
+    public function create() {
+        return view('articles.create');
+    }
+    public function store(Request $request) {
+        $input = $request->all();
+        $article = new Article();
+        $article->create($input);
+        return redirect('/articles');
+    }
 }
