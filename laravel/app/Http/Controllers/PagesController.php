@@ -8,21 +8,29 @@ use App\Http\Requests;
 
 class PagesController extends Controller
 {
-    public function about()
-    {
-        $name = "Dejan";
-        $last_name = "Jankov";
+    public function about(){
+        $name = "Emilija";
+        $last_name = "Talevska";
         $people = [
-            'aaaa',
-            'bbbbb',
-            'ccccc'
+            'aaa',
+            'bbb',
+            'ccc'
         ];
 
-        $people = [];
-        return view('pages/about', array('name' => $name, 'last_name' => $last_name , 'people'=> $people));
+//        $people = [];
+//        return view('pages/about')
+//          ->with('name',$name)
+//          ->with('last_name',$last_name)
+//          ->with('people',$people);
+        return view('pages/about',
+            array(
+                'name' => $name,
+                'lastName' => $last_name,
+                'people' => $people)
+        );
     }
-    public function contact()
-    {
+
+    public function contact(){
         return view('pages/contact');
     }
 }
