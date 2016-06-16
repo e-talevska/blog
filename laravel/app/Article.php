@@ -14,7 +14,22 @@ class Article extends Model
         'slug'
     ];
 
+    protected $dates=[
+        'published_at'
+    ];
+
+    public function scopePublished($query){
+        $query->where('published_at','<=',Carbon::now());
+    }
+
+    public function scopeNotPublished($query){
+        $query->where('published_at','>',Carbon::now());
+    }
+
     public function setPublishedAtAttribute($data){
         $this->attributes['published_at']=Carbon::createFromFormat('d/m/Y H:i A',$data);
+    }
+    public function author(){
+        $this->belongsTo('Apps\User');
     }
 }
