@@ -23,3 +23,5 @@ Route::get('articles', 'ArticlesController@index');
 Route::get('articles/create', 'ArticlesController@create');
 Route::get('articles/{slug}', 'ArticlesController@view');
 Route::post('articles/save', 'ArticlesController@store');
+Route::get('articles/edit/{id}', 'ArticlesController@edit');
+Route::post('articles/update/{id}', 'ArticlesController@update');
