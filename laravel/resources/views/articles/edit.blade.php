@@ -1,10 +1,10 @@
 @extends('layouts.layout')
 
 @section('content')
-    <h1>Create Article</h1>
+    <h1>Edit {{ $article->title }}</h1>
 
-    {{ Form::open (['url' => url('/articles/save')]) }}
-        @include('articles._form', ['my_submit_button' => 'Create Article'])
+    {{ Form::model ($article, ['url' => url('/articles/update', ['id' =>$article->id])]) }}
+        @include('articles._form', ['my_submit_button' => 'Edit Article'])
     {{ Form::close() }}
 
     @include('errors._errors')
