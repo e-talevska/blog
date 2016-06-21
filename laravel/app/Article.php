@@ -11,7 +11,8 @@ class Article extends Model
         'title',
         'body',
         'published_at',
-        'slug'
+        'slug',
+        'user_id'
     ];
 
     protected $dates = [
@@ -31,6 +32,7 @@ class Article extends Model
     }
 
     public function author(){
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
     }
+
 }

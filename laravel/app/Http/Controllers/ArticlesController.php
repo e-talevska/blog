@@ -39,7 +39,8 @@ class ArticlesController extends Controller
 //            'published_at' => 'required|date_format:"m/d/Y H:i A"',
 //        ]);
         $input = $request->all();
-//        var_dump($input);exit;
+        $input['user_id'] = 1;
+
         $article = new Article();
         $article->create($input);
         return redirect('/articles');
