@@ -7,9 +7,13 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => 'index', 'view']);
+    }
     public function index() {
         $articles = Article::published()->latest('published_at')->get();
         $name = "Robert";
@@ -20,7 +24,7 @@ class ArticlesController extends Controller
     public function view($slug){
         $article = Article::where("slug", "=", "$slug")->first();
 
-        if(is_null($article));
+        if(is_null($article))
             abort('404');
 
         return view('articles.view', compact('article'));
@@ -30,9 +34,19 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
     public function store(Requests\CreateArticleRequest $request) {
+
+        //procitaj se od formata
         $input = $request->all();
-        $article = new Article();
-        $article->create($input);
+        //kreiraj nov article moment
+        $article = new Article($input);
+        //toj objekt dodaj go na listata artikli
+        //na avtenticniot user
+        Auth::user()->articles()->save(new Article($input));
+
+
+//        $input['user_id'] = 1;
+//        $article = new Article();
+//        $article->create($input);
         return redirect('/articles');
     }
 
