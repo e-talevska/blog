@@ -27,3 +27,12 @@ Route::post("articles/save", "ArticlesController@store");
 Route::post("articles/update/{id}","ArticlesController@update" );
 
 
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::controllers([
+    '/'=> 'Auth\AuthController',
+    'password'=> 'Auth\PasswordController'
+]);
