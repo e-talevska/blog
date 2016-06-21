@@ -11,7 +11,8 @@ class Article extends Model
         'title',
         'body',
         'published_at',
-        'slug'
+        'slug',
+        'user_id'
     ];
 
     protected $dates=[
@@ -30,6 +31,6 @@ class Article extends Model
         $this->attributes['published_at']=Carbon::createFromFormat('d/m/Y H:i A',$data);
     }
     public function author(){
-        $this->belongsTo('Apps\User');
+        return $this->belongsTo('Apps\User','user_id');
     }
 }
