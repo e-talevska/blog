@@ -7,6 +7,7 @@ use App\Article;
 use App\Http\Requests;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -38,6 +39,7 @@ class ArticlesController extends Controller
 //            'body' => 'required',
 //            'published_at' => 'required|date_format:"m/d/Y H:i A"',
 //        ]);
+        var_dump(Auth::user());exit;
         $input = $request->all();
         $input['user_id'] = 1;
 

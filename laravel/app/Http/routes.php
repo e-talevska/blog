@@ -25,3 +25,11 @@ Route::get('articles/{slug}', 'ArticlesController@view');
 Route::post('articles/save', 'ArticlesController@store');
 Route::get('articles/edit/{id}', 'ArticlesController@edit');
 Route::post('articles/update/{id}', 'ArticlesController@update');
+//Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::controllers([
+    '/' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
