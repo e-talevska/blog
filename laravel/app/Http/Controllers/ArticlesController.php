@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => ['index', 'view']]);
+    }
     public function index() {
         $articles = Article::published()->latest('published_at')->get();
         $name = "Emilija";
@@ -39,12 +42,20 @@ class ArticlesController extends Controller
 //            'body' => 'required',
 //            'published_at' => 'required|date_format:"m/d/Y H:i A"',
 //        ]);
-        var_dump(Auth::user());exit;
-        $input = $request->all();
-        $input['user_id'] = 1;
 
-        $article = new Article();
-        $article->create($input);
+        //procitaj se od formata
+        $input = $request->all();
+        //creiraj nov artikl objekt
+        $article=new Article($input);
+        //toj objekt dodaj go na listata artikli
+        //na avtenticiraniot user
+        Auth::user()->articles()->save($article);
+
+
+       // $input['user_id'] = 1;
+
+      //  $article = new Article();
+      //  $article->create($input);
         return redirect('/articles');
     }
 

@@ -25,6 +25,8 @@
     </div>
     {{ Form::close() }}
 
+    @include('errors._errors')
+
 @endsection
 
 @section('footer')
