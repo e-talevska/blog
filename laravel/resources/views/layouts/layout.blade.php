@@ -13,6 +13,17 @@
 </head>
 <body>
     <div class="container">
+       @if(Session::has("flash_message")) <?php // ispituva dali postoi porakata ?>
+            @if(Session::has("status"))
+          <?php   $status=Session::get("status") ?>
+                @else
+          <?php $status="warning"  ?>
+            @endif
+        <div class="alert alert-{{ $status }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <strong>{{ Session::get("flash_message") }}</strong> <?php //dokolku postoi ispecati ja ?>
+        </div>
+           @endif
         @yield('content')
     </div>
 
