@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ArticlesController extends Controller
 {
     public function __construct(){
         $this->middleware('auth', ['except' => 'index', 'view']);
+        $this->middleware('ifauthor', ['except' => 'index', 'view']);
     }
     public function index() {
         $articles = Article::published()->latest('published_at')->get();
@@ -31,7 +34,8 @@ class ArticlesController extends Controller
     }
 
     public function create() {
-        return view('articles.create');
+        $tags = Tag::lists('name', 'id');
+        return view('articles.create', ['tags' => $tags]);
     }
     public function store(Requests\CreateArticleRequest $request) {
 
@@ -41,12 +45,13 @@ class ArticlesController extends Controller
         $article = new Article($input);
         //toj objekt dodaj go na listata artikli
         //na avtenticniot user
-        Auth::user()->articles()->save(new Article($input));
+        Auth::user()->articles()->save($article);
+
+        $article->tags()->attach($request->get('tags'));
 
 
-//        $input['user_id'] = 1;
-//        $article = new Article();
-//        $article->create($input);
+        Session::flash("flash_message", "Article created successfully");
+        Session::flash("status", "success");
         return redirect('/articles');
     }
 

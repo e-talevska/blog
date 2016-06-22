@@ -28,4 +28,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Article');
     }
 
+    public function isAuthor() {
+        return true;
+    }
+
 }
