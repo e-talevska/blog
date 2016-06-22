@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Article;
 
 use App\Http\Requests;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ArticlesController extends Controller
 {
     public function __construct(){
         $this->middleware('auth',['except' => ['index', 'view'] ]);
+        $this->middleware('ifauthor',['except' => ['index', 'view'] ]);
     }
 
     public function index() {
@@ -33,7 +36,8 @@ class ArticlesController extends Controller
     }
 
     public function create() {
-        return view('articles.create');
+        $tags = Tag::lists('name', 'id');
+        return view('articles.create', ['tags' => $tags]);
     }
 
     public function store(Requests\CreateArticleRequest $request){
@@ -43,7 +47,7 @@ class ArticlesController extends Controller
 //            'body' => 'required',
 //            'published_at' => 'required|date_format:"m/d/Y H:i A"',
 //        ]);
-
+//var_dump($request->all());exit;
         //procitaj se od formata
         $input = $request->all();
         //creairaj nov Article object
@@ -52,11 +56,10 @@ class ArticlesController extends Controller
         //na avtenticiraniot user
         Auth::user()->articles()->save($article);
 
-//
-//        $input['user_id'] = 1;
-//
-//        $article = new Article();
-//        $article->create($input);
+        $article->tags()->attach($request->get('tags'));
+
+        Session::flash("flash_message", "Article created successfully");
+//        Session::flash("status", "success");
         return redirect('/articles');
     }
 
