@@ -15,7 +15,9 @@
 @section('footer')
     <script type="text/javascript">
         $(function () {
-            $('#published_at').datetimepicker();
+            $('#published_at').datetimepicker({
+                defaultDate: "<?php echo $article->published_at->format("m/d/Y H:i A"); ?>"
+            });
         });
     </script>
 @endsection
