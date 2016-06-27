@@ -28,6 +28,7 @@ class CreateArticleRequest extends Request
             'slug' => 'required',
             'body' => 'required',
             'published_at' => 'required|date_format:"m/d/Y H:i A"',
+            'featured_image' => 'mimes:jpeg,bmp,gif,png'
         ];
     }
 }

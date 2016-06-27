@@ -14,13 +14,18 @@
 </div>
 
 <div class="form-group">
-    {{ Form::label("tags","Tags")}}
-    {{ Form::select("tags[]",$tags, null, ["class" =>"form-control", "multiple" => "multiple"])  }}
+    {{ Form::label("tags_list","Tags")}}
+    {{ Form::select("tags_list[]",$tags, null, ["class" =>"form-control", "multiple" => "multiple", "id" =>'tags_list'])  }}
 </div>
 
 <div class="form-group" style="position:relative;">
     {{ Form::label("published_at","Published")}}
     {{ Form::text("published_at", null, ["class" =>"form-control"])  }}
+</div>
+
+<div class="form-group" >
+    {{ Form::label("featured_image","Published")}}
+    {{ Form::file("featured_image", null, ["class" =>"form-control"])  }}
 </div>
 
 <div class="form-group">
