@@ -27,6 +27,8 @@ Route::get('articles/edit/{id}', 'ArticlesController@edit');
 Route::post('articles/update/{id}', 'ArticlesController@update');
 //Route::auth();
 
+Route::resource('tags','TagsController');
+
 Route::get('/home', 'HomeController@index');
 
 Route::controllers([

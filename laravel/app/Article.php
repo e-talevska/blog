@@ -12,7 +12,8 @@ class Article extends Model
         'body',
         'published_at',
         'slug',
-        'user_id'
+        'user_id',
+        'featured_image'
     ];
 
     protected $dates = [
@@ -28,7 +29,15 @@ class Article extends Model
     }
 
     public function setPublishedAtAttribute($data) {
-        $this->attributes['published_at'] = Carbon::createFromFormat('d/m/Y H:i A', $data);
+        $this->attributes['published_at'] = Carbon::createFromFormat('m/d/Y H:i A', $data);
+    }
+//$article->published_at
+    public function getPublishedAtAttribute(){
+        return Carbon::parse($this->attributes['published_at'])->format('m/d/Y H:i A');
+    }
+    //$article->tags_list
+    public function getTagsListAttribute(){
+        return $this->tags->lists('id')->toArray();
     }
 
     public function author(){
