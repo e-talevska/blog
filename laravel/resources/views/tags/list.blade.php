@@ -1,7 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: code
- * Date: 27.06.2016
- * Time: 20:53
- */
+@extends('layouts.app')
+
+@section('content')
+    @foreach($tags as $tag)
+        <div>
+            <a href="/tags/list/{{$tag->name}}">{{ $tag->name }}</a>
+        </div>
+    @endforeach
+    @endsection

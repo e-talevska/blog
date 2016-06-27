@@ -27,7 +27,8 @@ class CreateArticleRequest extends Request
             'title'=>'required|min:3',
             'slug'=>'required',
             'body'=>'required',
-            'published_at'=>'required|date_format:"m/d/Y H:i A"'
+            'published_at'=>'required|date_format:"m/d/Y H:i A"',
+            'featured_image'=>'mimes:jpeg,bmp,png,gif'
 
 
         ];
